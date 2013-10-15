@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20131014201809) do
     t.string   "status"
     t.integer  "position_x"
     t.integer  "position_y"
-    t.integer  "current_live"
+    t.integer  "current_life"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

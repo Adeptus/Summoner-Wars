@@ -4,8 +4,6 @@ class Game < ActiveRecord::Base
   ### Callbacks ###
   #################
 
-
-
   ####################
   ### Associations ###
   ####################

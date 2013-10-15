@@ -7,7 +7,7 @@ class CreateDeckCards < ActiveRecord::Migration
       t.string      :status
       t.integer     :position_x
       t.integer     :position_y
-      t.integer     :current_live
+      t.integer     :current_life
 
       t.timestamps
     end

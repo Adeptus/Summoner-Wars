@@ -2,12 +2,16 @@
 
 %table
   %tr
+    %th Created by:
+    %th Created at:
     %th
     %th
     %th
 
   - @games.each do |game|
     %tr
+      %td= game.player_one.email if game.player_one
+      %td= game.created_at
       %td= link_to 'Show', game
       %td= link_to 'Edit', edit_game_path(game)
       %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }

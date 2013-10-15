@@ -9,7 +9,7 @@ class DeckCard < ActiveRecord::Base
   before_create :set_life, :set_status
 
   def set_life
-    self.current_life = card.life if card && card.life.present?
+    self.current_life = card.life if card && card.attributes.has_key?("life")
   end
 
   def set_status
@@ -27,7 +27,7 @@ class DeckCard < ActiveRecord::Base
   ### Validations ###
   ###################
 
-  validates_presence_of  :deck_id, :card_type, :card_id, :status
+  validates_presence_of  :deck_id, :card_type, :card_id
 
   ##############
   ### Scopes ###
