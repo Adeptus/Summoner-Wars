@@ -5,7 +5,6 @@
       %ul
         - @game.errors.full_messages.each do |msg|
           %li= msg
-  = f.hidden_field :player_one_id, value: current_user.id
   = select_tag :rase_type, options_for_select(Unit.all.pluck(:rase_type).uniq)
   .actions
     = f.submit 'Save'

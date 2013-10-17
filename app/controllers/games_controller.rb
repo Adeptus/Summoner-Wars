@@ -29,6 +29,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
+        @game.decks.create(player_id: current_user.id).generate_deck(rase_type_params)
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render action: 'show', status: :created, location: @game }
       else
@@ -43,6 +44,7 @@ class GamesController < ApplicationController
   def update
     respond_to do |format|
       if @game.update(game_params)
+        @game.decks.create(player_id: current_user.id).generate_deck(rase_type_params)
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { head :no_content }
       else

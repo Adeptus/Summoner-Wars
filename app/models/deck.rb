@@ -7,6 +7,8 @@ class Deck < ActiveRecord::Base
   ### Associations ###
   ####################
 
+  belongs_to :player, class_name: "User"
+  belongs_to :game
   has_many :deck_cards
   has_many :unit_cards,  through: :deck_cards, source: "card", source_type: "Unit"
   has_many :event_cards, through: :deck_cards, source: "card", source_type: "Event"
@@ -23,6 +25,10 @@ class Deck < ActiveRecord::Base
   ########################
   ### Instance Methods ###
   ########################
+
+  def rase_type
+    unit_cards.first.rase_type if deck_cards.any?
+  end
 
   def generate_deck(rase_name)
     %w(Unit Event Wall).each do |class_type|

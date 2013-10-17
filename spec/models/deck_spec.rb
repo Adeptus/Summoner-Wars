@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Deck do
  
+  it { should belong_to(:game) }
+  it { should belong_to(:player) }
+
   it "has a valid factory" do
     FactoryGirl.create(:deck).should be_valid
   end

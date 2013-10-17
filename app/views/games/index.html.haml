@@ -2,19 +2,19 @@
 
 %table
   %tr
-    %th Created by:
+    %th Player:
+    %th Player rase:    
     %th Created at:
-    %th
     %th
     %th
 
   - @games.each do |game|
     %tr
-      %td= game.player_one.email if game.player_one
+      %td= game.players.first.email if game.players.any?
+      %td= game.decks.first.rase_type if game.decks.any?      
       %td= game.created_at
-      %td= link_to 'Show', game
-      %td= link_to 'Edit', edit_game_path(game)
-      %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Join', edit_game_path(game) unless game.player_ids.include?(current_user.id)
+      %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' } if game.player_ids.include?(current_user.id)
 
 %br
 

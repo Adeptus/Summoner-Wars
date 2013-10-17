@@ -7,12 +7,10 @@ class Game < ActiveRecord::Base
   ####################
   ### Associations ###
   ####################
-
-  belongs_to :player_one,        class_name: "User"
-  belongs_to :player_two,        class_name: "User"
-  belongs_to :current_player,    class_name: "User"
-  belongs_to :player_one_deck,   class_name: "Deck"
-  belongs_to :player_two_deck,   class_name: "Deck"  
+  has_many :decks
+  has_many :players, through: :decks, class_name: "User"
+  has_one  :current_deck,    class_name: "Deck"
+  has_one  :current_player, through: :current_deck, class_name: "User"
 
   ###################
   ### Validations ###
@@ -22,9 +20,9 @@ class Game < ActiveRecord::Base
   ### Scopes ###
   ##############
 
-  scope :finished,      where("finished_at is not null")
-  scope :unfinished,    where("finished_at is null")
-  scope :recent, order("updated_at desc")
+  scope :finished,   -> { where("finished_at is not null")}
+  scope :unfinished, -> { where("finished_at is null")}
+  scope :recent,     -> { order("updated_at desc")}
 
   ########################
   ### Instance Methods ###

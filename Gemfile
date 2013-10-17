@@ -57,7 +57,7 @@ end
 group :test do
   gem "capybara"
   gem "capybara-webkit"
-  gem "cucumber-rails"
+  gem "cucumber-rails", require: false
   gem "shoulda-matchers"  #meathers for testing models
 end
 
