@@ -46,6 +46,9 @@ group :development do
   gem "guard-cucumber"
   gem "guard-rspec"
   gem "guard-zeus"
+
+  gem 'meta_request' # requires to 'rails panel' - chrome dev tool
+  gem "better_errors" # for showing better errors view  
 end
 
 group :development, :test do

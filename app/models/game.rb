@@ -4,6 +4,8 @@ class Game < ActiveRecord::Base
   ### Callbacks ###
   #################
 
+  after_update :set_start_deck
+
   ####################
   ### Associations ###
   ####################
@@ -27,5 +29,14 @@ class Game < ActiveRecord::Base
   ########################
   ### Instance Methods ###
   ########################
+
+  private
+
+  def set_start_deck
+    if decks.count == 2
+      self.current_deck_id = decks.order("RANDOM()").first.id
+      self.save
+    end
+  end
 
 end

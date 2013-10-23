@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017202054) do
+ActiveRecord::Schema.define(version: 20131023213835) do
 
   create_table "deck_cards", force: true do |t|
     t.integer  "deck_id"
@@ -43,16 +43,14 @@ ActiveRecord::Schema.define(version: 20131017202054) do
   end
 
   create_table "games", force: true do |t|
-    t.integer  "player_one_id"
-    t.integer  "player_two_id"
     t.integer  "current_deck_id"
     t.datetime "finished_at"
     t.datetime "started_at"
-    t.integer  "player_one_deck_id"
-    t.integer  "player_two_deck_id"
     t.integer  "winner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "phase",           default: 0
+    t.integer  "turn",            default: 0
   end
 
   create_table "units", force: true do |t|

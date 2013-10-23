@@ -31,6 +31,17 @@ describe GamesController do
   let(:valid_session) { {} }
 
   describe "GET index" do
+    it 'should create an account' do
+      sign_out @user
+      visit new_user_registration_path
+      fill_in 'user_email', with: 'newtest@test.com'
+      fill_in 'user_password', with: 'testing123'
+      fill_in 'user_password_confirmation', with: 'testing123'
+      expect{
+        click_button 'Sign up'
+      }.to change{User.count}.by(1)
+    end
+
     it "assigns all games as @games" do
       game = Game.create! valid_attributes
       get :index, {}, valid_session
